@@ -8,15 +8,14 @@ To implement the **Q-Learning control algorithm** using the Gymnasium `FrozenLak
 
 ## Problem Statement
 
-
+Implement a Q-Learning control algorithm using the Gymnasium library to train an agent to learn the optimal path in a FrozenLake environment. The agent should learn the best actions through trial and error while maximizing the total reward and reaching the goal successfully.
 
 ## Software Requirements
 
 
-
 ## Environment Description
 
-
+The environment used is **FrozenLake-v1** with a **5×5 grid**. The agent starts from the starting state and must reach the goal while avoiding the holes. The environment has **25 states** and **4 possible actions**: Left, Down, Right, and Up. A reward of **1** is given when the agent reaches the goal, while other movements receive a reward of **0**. The Q-Learning algorithm is used to learn the optimal policy for navigating the environment.
 
 ## Theory
 
