@@ -77,7 +77,46 @@ $$
 # -------------------------------------------------
 # Q-Learning Training
 # -------------------------------------------------
-# Write your code here
+
+for episode in range(num_episodes):
+    state, info = env.reset(seed=episode)
+    total_reward = 0
+
+    for step in range(100):
+        # Choose an action using epsilon-greedy policy
+        action = choose_action(state, epsilon)
+
+        # Take the action
+        next_state, reward, terminated, truncated, info = env.step(action)
+
+        # Q-Learning target uses the maximum Q-value
+        # of the next state (off-policy learning).
+        if terminated or truncated:
+            target = reward
+        else:
+            target = reward + gamma * np.max(Q[next_state])
+
+        # Update Q-value
+        Q[state, action] += alpha * (target - Q[state, action])
+
+        state = next_state
+        total_reward += reward
+
+        if terminated or truncated:
+            break
+
+    episode_rewards.append(total_reward)
+
+    # Reduce exploration gradually
+    epsilon = max(epsilon_min, epsilon * epsilon_decay)
+
+# Derive the state-value function and greedy policy
+state_values = np.max(Q, axis=1)
+learned_policy = np.argmax(Q, axis=1)
+
+print("Training completed.")
+print("Final epsilon:", epsilon)
+
 
 
 
@@ -91,26 +130,51 @@ $$
 ## Output
 
 ```text
+
 Final Q-table:
-
-
-
-
+[[0.663 0.698 0.698 0.663]
+ [0.663 0.735 0.735 0.698]
+ [0.698 0.774 0.774 0.735]
+ [0.735 0.815 0.735 0.774]
+ [0.774 0.    0.735 0.735]
+ [0.698 0.735 0.735 0.663]
+ [0.698 0.    0.774 0.698]
+ [0.735 0.    0.815 0.735]
+ [0.774 0.857 0.    0.774]
+ [0.    0.    0.    0.   ]
+ [0.735 0.774 0.    0.698]
+ [0.    0.    0.    0.   ]
+ [0.    0.    0.    0.   ]
+ [0.    0.902 0.902 0.815]
+ [0.857 0.95  0.902 0.   ]
+ [0.774 0.815 0.815 0.735]
+ [0.774 0.857 0.    0.   ]
+ [0.    0.    0.    0.   ]
+ [0.    0.95  0.95  0.857]
+ [0.902 1.    0.95  0.902]
+ [0.815 0.815 0.857 0.774]
+ [0.815 0.857 0.902 0.815]
+ [0.857 0.902 0.95  0.   ]
+ [0.902 0.95  1.    0.902]
+ [0.    0.    0.    0.   ]]
 
 Estimated State-Value Function:
-
-
-
-
-
+[[0.698 0.735 0.774 0.815 0.774]
+ [0.735 0.774 0.815 0.857 0.   ]
+ [0.774 0.    0.    0.902 0.95 ]
+ [0.815 0.857 0.    0.95  1.   ]
+ [0.857 0.902 0.95  1.    0.   ]]
 
 Learned Policy:
+[['D' 'D' 'D' 'D' 'L']
+ ['D' 'R' 'R' 'D' 'L']
+ ['D' 'L' 'L' 'D' 'D']
+ ['D' 'D' 'L' 'D' 'D']
+ ['R' 'R' 'R' 'R' 'L']]
 
-
-
-
-Average reward over last 1000 episodes: 
+Average reward over last 1000 episodes: 0.495 
 ```
+<img width="988" height="627" alt="Screenshot 2026-11-25 141334" src="https://github.com/user-attachments/assets/748ba5a2-56a1-417c-ad58-be1e885a5dbb" />
 
 ---
 
