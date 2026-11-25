@@ -202,12 +202,10 @@ The Q-Learning algorithm successfully learned a policy for the 5×5 FrozenLake e
 
 ## Inference
 
-```text
 The results show that Q-Learning can learn an effective navigation policy through trial and error. The learned Q-values increase toward the goal, showing that the agent has learned which actions lead to higher future rewards. The learned policy successfully guides the agent toward the goal while avoiding many of the holes. Although the learning curve appears mostly flat because rewards are sparse, the Q-table and final policy demonstrate successful learning.
 
 
 
-```
 
 ---
 
