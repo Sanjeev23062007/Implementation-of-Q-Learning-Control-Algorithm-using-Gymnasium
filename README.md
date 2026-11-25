@@ -191,12 +191,12 @@ Average reward over last 1000 episodes: 0.495
 
 ## Result
 
-```text
+
 
 The Q-Learning algorithm successfully learned a policy for the 5×5 FrozenLake environment. The final Q-table contains learned action values for all 25 states. The estimated state-value function shows higher values near the goal state, with the goal state having a value of 1. The average reward over the last 1000 episodes was **0.495**, indicating approximately **49.5% successful episodes**.
 
 
-```
+
 
 ---
 
