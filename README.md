@@ -67,6 +67,18 @@ $$
 
 ## Algorithm
 
+1. Create a **5×5 FrozenLake environment** using the Gymnasium library.
+2. Initialize a **Q-table with 25 states and 4 actions** for the environment.
+3. Set the learning parameters such as **learning rate (α), discount factor (γ), and exploration rate (ε)**.
+4. Select actions using the **epsilon-greedy strategy** to balance exploration and exploitation.
+5. Execute the selected action and observe the **next state and reward** from the environment.
+6. Update the Q-table using the **Q-Learning update rule** based on the reward and maximum Q-value of the next state.
+7. Repeat the process for multiple episodes while gradually reducing the exploration rate.
+8. After training, select the action with the **highest Q-value** in each state to obtain the learned policy.
+9. Evaluate the agent using the learned policy and plot the **learning curve** based on episode rewards.
+
+
+
 
 
 ## Python Program
@@ -181,6 +193,7 @@ Average reward over last 1000 episodes: 0.495
 
 ```text
 
+The Q-Learning algorithm successfully learned a policy for the 5×5 FrozenLake environment. The final Q-table contains learned action values for all 25 states. The estimated state-value function shows higher values near the goal state, with the goal state having a value of 1. The average reward over the last 1000 episodes was **0.495**, indicating approximately **49.5% successful episodes**.
 
 
 ```
@@ -190,6 +203,7 @@ Average reward over last 1000 episodes: 0.495
 ## Inference
 
 ```text
+The results show that Q-Learning can learn an effective navigation policy through trial and error. The learned Q-values increase toward the goal, showing that the agent has learned which actions lead to higher future rewards. The learned policy successfully guides the agent toward the goal while avoiding many of the holes. Although the learning curve appears mostly flat because rewards are sparse, the Q-table and final policy demonstrate successful learning.
 
 
 
